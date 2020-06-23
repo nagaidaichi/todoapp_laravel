@@ -14,10 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get("/hello", function () {
-	print("<h1>Hello World!</h1>");
-	return null;
-});
-Route::get("/whoAreYou/{name}", function($name) {  
-	return "<h1>こんにちは".$name."さん</h1>";
-});  //   localhost:3000/whoAreYou/Bob アクセスしてみ！（URLに変数を埋め込むこと：ルートパラメータ）
