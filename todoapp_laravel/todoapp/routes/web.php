@@ -14,5 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/ff', function () {
+    print("<h1>Hello World!</h1>");
+	return null;
+});
 Route::resource('tasks', 'TaskController');
 Route::resource('statuses', 'StatusController');
