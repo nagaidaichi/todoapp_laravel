@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['api']], function(){
     Route::resource('task', 'Api\TaskController', ['except' => ['create', 'edit']]);
 });
+Route::group(['middleware' => ['api']], function(){
+    Route::resource('status', 'Api\StatusController', ['except' => ['create','store', 'edit', 'update', 'destroy']]);
+});

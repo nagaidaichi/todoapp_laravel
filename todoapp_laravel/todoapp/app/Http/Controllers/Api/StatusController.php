@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Task;
 use App\Status;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class TaskController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-        $status = Status::all();
-        return $tasks;
+        $statuses = Status::all();
+        return $statuses;
     }
 
     /**
@@ -37,36 +35,31 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $task = new Task();
-        $task->content = $request->content;
-        $task->status_id = $request->status_id;
-        $task->save();
-        return redirect('api/task');
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
 
     /**
      * Display the specified resource.
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
+     *
+     * @param  \App\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function show(Request  $request, Task $task)
+    public function show(Status $status)
     {
-        $id = $task->id;
-        $task = Task::find($id);
-        return $task;
+      $id = $status->id;
+      $status = Status::find(id);
+      return $status;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param  \App\Status  $status
      * @return \Illuminate\Http\Response
      */
-    // public function edit(Task $task)
+    // public function edit(Status $status)
     // {
     //     //
     // }
@@ -75,26 +68,22 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
+     * @param  \App\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
-    {
-        $task->content = $reqest->content;
-        $task->status_id = $reqest->status_id;
-        $task->save();
-        return  redirect("api/task");
-    }
+    // public function update(Request $request, Status $status)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Task  $task
+     * @param  \App\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
-    {
-        $task->delete();
-        return redirect('api/task');
-    }
+    // public function destroy(Status $status)
+    // {
+    //     //
+    // }
 }
