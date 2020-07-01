@@ -16,8 +16,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-        $status = Status::all();
+        $tasks = Task::with('status')->get();
         return $tasks;
     }
 
@@ -41,7 +40,7 @@ class TaskController extends Controller
     {
         $task = new Task();
         $task->content = $request->content;
-        $task->status_id = $request->status_id;
+        $task->status_id = $request->status_id->status;
         $task->save();
         return redirect('api/task');
     }
@@ -55,9 +54,9 @@ class TaskController extends Controller
      */
     public function show(Request  $request, Task $task)
     {
-        $id = $task->id;
-        $task = Task::find($id);
-        return $task;
+        // $id = $task->id;
+        // $task = Task::find($id);
+        // return $task;
     }
 
     /**
@@ -94,7 +93,12 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $task->delete();
-        return redirect('api/task');
+        // $task->delete();
+        // return redirect('api/task');
+    }
+
+    public function getStatus()
+    {
+        // return $this->with('status')->get();
     }
 }
