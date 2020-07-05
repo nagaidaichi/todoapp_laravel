@@ -40,7 +40,7 @@ class TaskController extends Controller
     {
         $task = new Task();
         $task->content = $request->content;
-        $task->status_id = $request->status_id->status;
+        $task->status_id = $request->status_id;
         $task->save();
         return redirect('api/task');
     }
@@ -54,9 +54,9 @@ class TaskController extends Controller
      */
     public function show(Request  $request, Task $task)
     {
-        // $id = $task->id;
-        // $task = Task::find($id);
-        // return $task;
+        $id = $task->id;
+        $task = Task::find($id);
+        return $task;
     }
 
     /**
@@ -79,10 +79,10 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        $task->content = $reqest->content;
-        $task->status_id = $reqest->status_id;
+        $task->content = $request->content;
+        $task->status_id = $request->status_id;
         $task->save();
-        return  redirect("api/task");
+        return;
     }
 
     /**
@@ -93,12 +93,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        // $task->delete();
-        // return redirect('api/task');
-    }
-
-    public function getStatus()
-    {
-        // return $this->with('status')->get();
+        $task->delete();
+        return;
     }
 }
